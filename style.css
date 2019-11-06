@@ -117,3 +117,22 @@ div {
 .start-yellow {
   background-color: var(--yellow);
 }
+
+.pawn {
+  z-index: 2;
+  width: calc(var(--fieldsize) * 0.5);
+  height: calc(var(--fieldsize) * 0.5);
+  border-radius: 50%;
+}
+.pawn-green {
+  background-color: var(--green);
+}
+.pawn-red {
+  background-color: var(--red);
+}
+.pawn-blue {
+  background-color: var(--blue);
+}
+.pawn-yellow {
+  background-color: var(--yellow);
+}
