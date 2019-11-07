@@ -1,8 +1,7 @@
 import Game from './Game';
 
-const startGame = () => {
-  new Game(4);
-  console.log('Game has begun');
+const startGame = (numberOfPlayers = 4) => {
+  new Game(numberOfPlayers);
 };
 
-window.addEventListener('load', startGame);
+window.addEventListener('load', () => startGame());
