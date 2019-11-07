@@ -2,7 +2,10 @@ class Pawn {
   constructor(color) {
     this.position = null;
     this.color = color;
+    this.status = "home";
   }
+
+  // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from = this.position) {
     const oldField = document.getElementById(from);
@@ -18,6 +21,15 @@ class Pawn {
     element.classList.add('pawn', `pawn-${this.color}`);
     return element;
   }
+
+  isFinished() {
+    return this.status != "finished";
+  }
+
+  setFinished() {
+    this.status = "finished";
+  }
+
 }
 
 export default Pawn;
