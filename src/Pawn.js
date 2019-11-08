@@ -2,7 +2,7 @@ class Pawn {
   constructor(color) {
     this.position = null;
     this.color = color;
-    this.status = "home";
+    this.status = 'in_home';
   }
 
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
@@ -22,8 +22,24 @@ class Pawn {
     return element;
   }
 
+  isHome() {
+    return this.status === 'in_home';
+  }
+
+  setHome() {
+    this.status = 'in_home';
+  }
+
+  isOnMap() {
+    return this.status === 'on_map';
+  }
+
+  setOnMap() {
+    this.status = 'on_map';
+  }
+
   isFinished() {
-    return this.status != "finished";
+    return this.status === 'finished';
   }
 
   setFinished() {
