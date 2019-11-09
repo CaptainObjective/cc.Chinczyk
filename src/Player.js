@@ -11,29 +11,47 @@ class Player {
     for (let i = 0; i < 4; i++) {
       this.pawns.push(new Pawn(color));
     }
-
     this.renderHome();
   }
 
+  // musiałam zmienić na status pionka, bo zielony po wyjściu miał pozycję 0, co powodowało, że nie znikał z homeDiv //
   renderHome() {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
-      !pawn.position && this.homeDiv.appendChild(pawn.render());
+      (pawn.isHome()) && this.homeDiv.appendChild(pawn.render());
     });
   }
 
-  move(diceRoll) {
-    //Ta metoda jest w całości do przerobienia, trzeba poprosić gracza o wybranie pionka/pola którym się rusza i to ustawić jako from
-    const pawnToMove = this.pawns[this.pawns.length - 1]; // To bedzie do zmiany
-    const from = this.pawns.every(({ position }) => !position) ? this.startPos : undefined;
-    pawnToMove.move(diceRoll, from);
-
-    //Odświeżam home ponieważ istnieje szansa że gracz po ruchu wyszedł, to można zrobić lepiej: odświeżając tylko jeśli gracz wyszedł
-    this.renderHome();
+  // znajdujemy pionki, które są w grze//
+  getPawn() {
+    for (let i = 0; i < 4; i++) {
+      if (!this.pawns[i].isFinished()) {
+        return this.pawns[i];
+      }
+    }
   }
 
-  leaveHome() {
-    //TODO
+  move(diceRoll) {
+    const pawnToMove = this.getPawn();
+    console.log("Kolej gracza: " + this.color);
+    console.log("wyrzuciles: " + diceRoll);
+    
+    if (pawnToMove.isOnMap()) {
+      pawnToMove.move(diceRoll, pawnToMove.position);
+    } else {
+      this.leaveHome(diceRoll, pawnToMove);
+    }
+  }
+
+  leaveHome(diceRoll, pawnToMove) {
+    if (pawnToMove.isHome()) {
+      if (diceRoll == 6 || diceRoll == 1) {
+        pawnToMove.move(0, this.startPos);
+        pawnToMove.setOnMap();
+        console.log('start pionka');
+      }
+    }
+    this.renderHome();
   }
 
   enterFinish() {
