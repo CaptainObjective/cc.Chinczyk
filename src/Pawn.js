@@ -1,3 +1,5 @@
+import { finished } from "stream";
+
 class Pawn {
   constructor(color) {
     this.position = null;
@@ -21,17 +23,17 @@ class Pawn {
       from = this.position;
       console.log('Wyrzuciłeś za dużo!');
     }
-    // Próba wejścia na zajęte miesjce w bazie
-    else if (this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).children.length > 0) {
+    // Próba wejścia na zajęte miejsce w bazie
+    else if (this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).children.length > 0) {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
       console.log('Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
-    else if(this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).children.length == 0) {
+    else if(this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${(this.color)}-${this.diceRollSum % 10}`).children.length == 0) {
       this.clearField(from)
-      document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).appendChild(this.render());
+      document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
       this.status ='finished';
       console.log('Pionek w bazie!');
     }
@@ -84,6 +86,11 @@ class Pawn {
   setFinished() {
     this.status = "finished";
   }
+
+  // allPawnsFinished() {
+  //   if(document.getElementById(`finish-${this.color}-0`).children.length == 1 && document.getElementById(`finish-${this.color}-1`).children.length == 1 && document.getElementById(`finish-${this.color}-2`).children.length == 1 && document.getElementById(`finish-${this.color}-3`).children.length == 1 &&
+  //   return
+  // }
 
 }
 

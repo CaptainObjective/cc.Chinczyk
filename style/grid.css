@@ -1,33 +1,3 @@
-:root {
-  --green: green;
-  --red: red;
-  --blue: blue;
-  --yellow: yellow;
-}
-
-body {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
-.game-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
-}
-
-h1 {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 64px;
-  margin: 0 0 10px 0;
-  letter-spacing: 5px;
-}
-
 #wrapper {
   display: grid;
   width: 600px;
@@ -53,111 +23,11 @@ h1 {
   font-size: 12px;
 }
 
-.field {
-  background: #ffffff;
-  border: 2px #000000 solid;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.player-name {
-  display: flex;
-  justify-content:center;
-  align-items: flex-end;
-  font-size: 16px;
-}
-
-.start-green {
-  background-color: var(--green);
-}
-.start-red {
-  background-color: var(--red);
-}
-.start-blue {
-  background-color: var(--blue);
-}
-.start-yellow {
-  background-color: var(--yellow);
-}
-
-.finish-green {
-  background-color: var(--green);
-}
-.finish-red {
-  background-color: var(--red);
-}
-.finish-blue {
-  background-color: var(--blue);
-}
-.finish-yellow {
-  background-color: var(--yellow);
-}
-
-/*HOME AREA*/
-
-.home-area {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  padding: 10px;
-  border: 2px #000000 solid;
-  border-radius: 50%;
-}
-
-#home-area-green {
-  background-color: #38c533;
-}
-#home-area-red {
-  background-color: #ec3f20;
-}
-#home-area-blue {
-  background-color: #417dee;
-}
-#home-area-yellow {
-  background-color: #f5f36e;
-}
-
-/* PAWNS*/
-
-.pawn {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 2px #000000 solid;
-}
-
-.pawn-green {
-  background-color: var(--green);
-}
-.pawn-red {
-  background-color: var(--red);
-}
-.pawn-blue {
-  background-color: var(--blue);
-}
-.pawn-yellow {
-  background-color: var(--yellow);
-}
-
-.field > .pawn {
-  z-index: 2;
-  position: absolute;
-}
+/* GRID MAPPING */
 
 .facebox {
   grid-area: ff;
-  background-image: url('img/6l71.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  border: 2px #000000 solid;
 }
-
-/* GRID MAPPING */
 
 #player-yellow {
   grid-area: py;
@@ -174,7 +44,6 @@ h1 {
 #player-blue {
   grid-area: pb;
 }
-
 
 #home-area-green {
   grid-area: hg;

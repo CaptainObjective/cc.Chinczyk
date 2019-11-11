@@ -54,6 +54,7 @@ class Player {
     }
     this.renderHome();
   }
+
 }
 
 export default Player;
