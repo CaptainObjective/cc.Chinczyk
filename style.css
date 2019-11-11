@@ -35,14 +35,14 @@ h1 {
   background: #d4d4d4;
   grid-gap: 8px;
   grid-template-areas:
-    '.. .. .. .. di dj aa .. .. .. ..'
+    '.. py py .. di dj aa .. pg pg ..'
     '.. hy hy .. dh a1 ab .. hg hg ..'
     '.. hy hy .. dg a2 ac .. hg hg ..'
     '.. .. .. .. df a3 ad .. .. .. ..'
     'da db dc dd de a4 ae af ag ah ai'
     'cj d1 d2 d3 d4 ff b4 b3 b2 b1 aj'
     'ci ch cg cf ce c4 be bd bc bb ba'
-    '.. .. .. .. cd c3 bf .. .. .. ..'
+    '.. pb pb .. cd c3 bf .. pr pr ..'
     '.. hb hb .. cc c2 bg .. hr hr ..'
     '.. hb hb .. cb c1 bh .. hr hr ..'
     '.. .. .. .. ca bj bi .. .. .. ..';
@@ -50,6 +50,7 @@ h1 {
   grid-template-rows: repeat(11, 1fr);
   padding: 10px;
   border: 3px #b8b6b6 solid;
+  font-size: 12px;
 }
 
 .field {
@@ -61,13 +62,11 @@ h1 {
   align-items: center;
 }
 
-.facebox {
-  grid-area: ff;
-  background-image: url('img/6l71.jpg');
-  background-size: cover;
-  background-position: center;
-  border-radius: 50%;
-  border: 2px #000000 solid;
+.player-name {
+  display: flex;
+  justify-content:center;
+  align-items: flex-end;
+  font-size: 16px;
 }
 
 .start-green {
@@ -96,6 +95,8 @@ h1 {
   background-color: var(--yellow);
 }
 
+/*HOME AREA*/
+
 .home-area {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -120,12 +121,11 @@ h1 {
   background-color: #f5f36e;
 }
 
-
 /* PAWNS*/
 
 .pawn {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: 2px #000000 solid;
 }
@@ -148,7 +148,33 @@ h1 {
   position: absolute;
 }
 
+.facebox {
+  grid-area: ff;
+  background-image: url('img/6l71.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: 2px #000000 solid;
+}
+
 /* GRID MAPPING */
+
+#player-yellow {
+  grid-area: py;
+}
+
+#player-green {
+  grid-area: pg;
+}
+
+#player-red {
+  grid-area: pr;
+}
+
+#player-blue {
+  grid-area: pb;
+}
+
 
 #home-area-green {
   grid-area: hg;

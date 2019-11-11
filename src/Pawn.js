@@ -19,10 +19,10 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      console.log('Wyrzuciłeś za dużo!')
+      console.log('Wyrzuciłeś za dużo!');
     }
     // Próba wejścia na zajęte miesjce w bazie
-    else if (this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).children.length > 0){
+    else if (this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).children.length > 0) {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
