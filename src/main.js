@@ -1,6 +1,6 @@
 import Game from './Game';
 
-const startGame = (numberOfPlayers = 4) => {
+const startGame = (numberOfPlayers = 2) => {
   new Game(numberOfPlayers);
 };
 

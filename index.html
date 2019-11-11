@@ -1,117 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/grid.css">
     <title>Chinczyk</title>
     <script src="index.js" defer></script>
   </head>
   <body>
-    <div id="wrapper">
+    <div class="game-box">
+      <h1>Chinczyk</h1>
       <button id="throwDice">Graj!</button>
-      <div id="gamearea">
-        <!-- TOP -->
-        <div class="home-area" id="home-area-yellow"></div>
-        <div class="fields-area" id="fields-area-top">
-          <div class="fields-column">
-            <div class="field" id="38">38</div>
-            <div class="field" id="37">37</div>
-            <div class="field" id="36">36</div>
-            <div class="field" id="35">35</div>
-          </div>
-          <div class="fields-column">
-            <div class="field" id="39">39</div>
-            <div class="field finish-green" id="finish-green-0">0</div>
-            <div class="field finish-green" id="finish-green-1">1</div>
-            <div class="field finish-green" id="finish-green-2">2</div>
-          </div>
-          <div class="fields-column">
-            <div class="field start-green" id="0">0</div>
-            <div class="field" id="1">1</div>
-            <div class="field" id="2">2</div>
-            <div class="field" id="3">3</div>
-          </div>
-        </div>
+      <div id="wrapper">
+        <div class="field f0 start-green" id="0">0</div>
+        <div class="field f1" id="1">1</div>
+        <div class="field f2" id="2">2</div>
+        <div class="field f3" id="3">3</div>
+        <div class="field f4" id="4">4</div>
+        <div class="field f5" id="5">5</div>
+        <div class="field f6" id="6">6</div>
+        <div class="field f7" id="7">7</div>
+        <div class="field f8" id="8">8</div>
+        <div class="field f9" id="9">9</div>
+        <div class="field f10 start-red" id="10">10</div>
+        <div class="field f11" id="11">11</div>
+        <div class="field f12" id="12">12</div>
+        <div class="field f13" id="13">13</div>
+        <div class="field f14" id="14">14</div>
+        <div class="field f15" id="15">15</div>
+        <div class="field f16" id="16">16</div>
+        <div class="field f17" id="17">17</div>
+        <div class="field f18" id="18">18</div>
+        <div class="field f19" id="19">19</div>
+        <div class="field f20 start-blue" id="20">20</div>
+        <div class="field f21" id="21">21</div>
+        <div class="field f22" id="22">22</div>
+        <div class="field f23" id="23">23</div>
+        <div class="field f24" id="24">24</div>
+        <div class="field f25" id="25">25</div>
+        <div class="field f26" id="26">26</div>
+        <div class="field f27" id="27">27</div>
+        <div class="field f28" id="28">28</div>
+        <div class="field f29" id="29">29</div>
+        <div class="field f30 start-yellow" id="30">30</div>
+        <div class="field f31" id="31">31</div>
+        <div class="field f32" id="32">32</div>
+        <div class="field f33" id="33">33</div>
+        <div class="field f34" id="34">34</div>
+        <div class="field f35" id="35">35</div>
+        <div class="field f36" id="36">36</div>
+        <div class="field f37" id="37">37</div>
+        <div class="field f38" id="38">38</div>
+        <div class="field f39" id="39">39</div>
+
+        <div class="field finish-green" id="finish-green-0">0</div>
+        <div class="field finish-green" id="finish-green-1">1</div>
+        <div class="field finish-green" id="finish-green-2">2</div>
+        <div class="field finish-green" id="finish-green-3">3</div>
+
+        <div class="field finish-red" id="finish-red-0">0</div>
+        <div class="field finish-red" id="finish-red-1">1</div>
+        <div class="field finish-red" id="finish-red-2">2</div>
+        <div class="field finish-red" id="finish-red-3">3</div>
+
+        <div class="field finish-blue" id="finish-blue-0">0</div>
+        <div class="field finish-blue" id="finish-blue-1">1</div>
+        <div class="field finish-blue" id="finish-blue-2">2</div>
+        <div class="field finish-blue" id="finish-blue-3">3</div>
+
+        <div class="field finish-yellow" id="finish-yellow-0">0</div>
+        <div class="field finish-yellow" id="finish-yellow-1">1</div>
+        <div class="field finish-yellow" id="finish-yellow-2">2</div>
+        <div class="field finish-yellow" id="finish-yellow-3">3</div>
+
         <div class="home-area" id="home-area-green"></div>
-
-        <!-- MIDDLE -->
-        <div class="fields-area" id="fields-area-left">
-          <div class="fields-row">
-            <div class="field start-yellow" id="30">30</div>
-            <div class="field" id="31">31</div>
-            <div class="field" id="32">32</div>
-            <div class="field" id="33">33</div>
-          </div>
-          <div class="fields-row">
-            <div class="field" id="29">29</div>
-            <div class="field finish-yellow" id="finish-yellow-0">0</div>
-            <div class="field finish-yellow" id="finish-yellow-1">1</div>
-            <div class="field finish-yellow" id="finish-yellow-2">2</div>
-          </div>
-          <div class="fields-row">
-            <div class="field" id="28">28</div>
-            <div class="field" id="27">27</div>
-            <div class="field" id="26">26</div>
-            <div class="field" id="25">25</div>
-          </div>
-        </div>
-        <div id="center">
-          <div class="field" id="34">34</div>
-          <div class="field finish-green" id="finish-green-3">3</div>
-          <div class="field" id="4">4</div>
-          <div class="field finish-yellow" id="finish-yellow-3">3</div>
-          <div id="placeholder"></div>
-          <div class="field finish-red" id="finish-red-3">3</div>
-          <div class="field" id="24">24</div>
-          <div class="field finish-blue" id="finish-blue-3">3</div>
-          <div class="field" id="14">14</div>
-        </div>
-        <div class="fields-area" id="fields-area-right">
-          <div class="fields-row">
-            <div class="field" id="5">5</div>
-            <div class="field" id="6">6</div>
-            <div class="field" id="7">7</div>
-            <div class="field" id="8">8</div>
-          </div>
-          <div class="fields-row">
-            <div class="field finish-red" id="finish-red-2">2</div>
-            <div class="field finish-red" id="finish-red-1">1</div>
-            <div class="field finish-red" id="finish-red-0">0</div>
-            <div class="field" id="9">9</div>
-          </div>
-          <div class="fields-row">
-            <div class="field" id="13">13</div>
-            <div class="field" id="12">12</div>
-            <div class="field" id="11">11</div>
-            <div class="field start-red" id="10">10</div>
-          </div>
-        </div>
-
-        <!-- BOTTOM -->
-        <div class="home-area" id="home-area-blue"></div>
-        <div class="fields-area" id="fields-area-bottom">
-          <div class="fields-column">
-            <div class="field" id="23">23</div>
-            <div class="field" id="22">22</div>
-            <div class="field" id="21">21</div>
-            <div class="field start-blue" id="20">20</div>
-          </div>
-          <div class="fields-column">
-            <div class="field finish-blue" id="finish-blue-2">2</div>
-            <div class="field finish-blue" id="finish-blue-1">1</div>
-            <div class="field finish-blue" id="finish-blue-0">0</div>
-            <div class="field" id="19">19</div>
-          </div>
-          <div class="fields-column">
-            <div class="field" id="15">15</div>
-            <div class="field" id="16">16</div>
-            <div class="field" id="17">17</div>
-            <div class="field" id="18">18</div>
-          </div>
-        </div>
         <div class="home-area" id="home-area-red"></div>
+        <div class="home-area" id="home-area-blue"></div>
+        <div class="home-area" id="home-area-yellow"></div>
+        
+        <div class="player-name" id="player-green">Player 1</div>
+        <div class="player-name" id="player-red">Player 2</div>
+        <div class="player-name" id="player-blue">Player 3</div>
+        <div class="player-name" id="player-yellow">Player 4</div>
+
+        <div class="facebox"></div>
       </div>
     </div>
   </body>
