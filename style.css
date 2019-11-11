@@ -123,6 +123,7 @@ div {
   width: calc(var(--fieldsize) * 0.5);
   height: calc(var(--fieldsize) * 0.5);
   border-radius: 50%;
+  border: 2px #000000 solid;
 }
 .pawn-green {
   background-color: var(--green);
