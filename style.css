@@ -1,111 +1,75 @@
 :root {
-  --fieldsize: 60px;
   --green: green;
   --red: red;
   --blue: blue;
   --yellow: yellow;
 }
+
 body {
   padding: 0;
   margin: 0;
-}
-
-div {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-  /* border: 5px black solid; */
+  font-family: sans-serif;
 }
 
-#wrapper {
+.game-box {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   height: 100vh;
 }
 
-#gamearea {
-  box-sizing: content-box;
-  width: calc(var(--fieldsize) * 11);
-  height: calc(var(--fieldsize) * 11);
-  display: flex;
-  flex-wrap: wrap;
+h1 {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 64px;
+  margin: 0 0 10px 0;
+  letter-spacing: 5px;
 }
 
-.home-area {
-  width: calc(var(--fieldsize) * 4);
-  height: calc(var(--fieldsize) * 4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#wrapper {
+  display: grid;
+  width: 600px;
+  height: 600px;
+  background: #d4d4d4;
+  grid-gap: 8px;
+  grid-template-areas:
+    '.. .. .. .. di dj aa .. .. .. ..'
+    '.. hy hy .. dh a1 ab .. hg hg ..'
+    '.. hy hy .. dg a2 ac .. hg hg ..'
+    '.. .. .. .. df a3 ad .. .. .. ..'
+    'da db dc dd de a4 ae af ag ah ai'
+    'cj d1 d2 d3 d4 ff b4 b3 b2 b1 aj'
+    'ci ch cg cf ce c4 be bd bc bb ba'
+    '.. .. .. .. cd c3 bf .. .. .. ..'
+    '.. hb hb .. cc c2 bg .. hr hr ..'
+    '.. hb hb .. cb c1 bh .. hr hr ..'
+    '.. .. .. .. ca bj bi .. .. .. ..';
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  padding: 10px;
+  border: 3px #b8b6b6 solid;
 }
 
-.fields-area {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#fields-area-top {
-  width: calc(var(--fieldsize) * 3);
-  height: calc(var(--fieldsize) * 4);
-}
-#fields-area-left {
-  width: calc(var(--fieldsize) * 4);
-  height: calc(var(--fieldsize) * 3);
-}
-#fields-area-right {
-  width: calc(var(--fieldsize) * 4);
-  height: calc(var(--fieldsize) * 3);
-}
-#fields-area-bottom {
-  width: calc(var(--fieldsize) * 3);
-  height: calc(var(--fieldsize) * 4);
-}
-#center {
-  width: calc(var(--fieldsize) * 3);
-  height: calc(var(--fieldsize) * 3);
-  display: flex;
-  flex-wrap: wrap;
-}
-.fields-column {
-  width: calc(var(--fieldsize) * 1);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.fields-row {
-  width: 100%;
-  height: calc(var(--fieldsize) * 1);
-  display: flex;
-}
-
-#placeholder {
-  background-color: black;
-  width: calc(var(--fieldsize) * 1);
-  height: calc(var(--fieldsize) * 1);
-}
 .field {
-  width: calc(var(--fieldsize) * 1);
-  height: calc(var(--fieldsize) * 1);
-  border: black solid 1px;
+  background: #ffffff;
+  border: 2px #000000 solid;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
-.finish-green {
-  background-color: var(--green);
+
+.facebox {
+  grid-area: ff;
+  background-image: url('img/6l71.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: 2px #000000 solid;
 }
-.finish-red {
-  background-color: var(--red);
-}
-.finish-blue {
-  background-color: var(--blue);
-}
-.finish-yellow {
-  background-color: var(--yellow);
-}
+
 .start-green {
   background-color: var(--green);
 }
@@ -119,12 +83,53 @@ div {
   background-color: var(--yellow);
 }
 
+.finish-green {
+  background-color: var(--green);
+}
+.finish-red {
+  background-color: var(--red);
+}
+.finish-blue {
+  background-color: var(--blue);
+}
+.finish-yellow {
+  background-color: var(--yellow);
+}
+
+.home-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  padding: 10px;
+  border: 2px #000000 solid;
+  border-radius: 50%;
+}
+
+#home-area-green {
+  background-color: #38c533;
+}
+#home-area-red {
+  background-color: #ec3f20;
+}
+#home-area-blue {
+  background-color: #417dee;
+}
+#home-area-yellow {
+  background-color: #f5f36e;
+}
+
+
+/* PAWNS*/
+
 .pawn {
-  width: calc(var(--fieldsize) * 0.5);
-  height: calc(var(--fieldsize) * 0.5);
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 2px #000000 solid;
 }
+
 .pawn-green {
   background-color: var(--green);
 }
@@ -141,5 +146,246 @@ div {
 .field > .pawn {
   z-index: 2;
   position: absolute;
-  top: calc(var(--fieldsize) * 0.25);
+}
+
+/* GRID MAPPING */
+
+#home-area-green {
+  grid-area: hg;
+}
+
+#home-area-red {
+  grid-area: hr;
+}
+
+#home-area-blue {
+  grid-area: hb;
+}
+
+#home-area-yellow {
+  grid-area: hy;
+}
+
+#finish-green-0 {
+  grid-area: a1;
+}
+
+#finish-green-1 {
+  grid-area: a2;
+}
+
+#finish-green-2 {
+  grid-area: a3;
+}
+
+#finish-green-3 {
+  grid-area: a4;
+}
+
+#finish-red-0 {
+  grid-area: b1;
+}
+
+#finish-red-1 {
+  grid-area: b2;
+}
+
+#finish-red-2 {
+  grid-area: b3;
+}
+
+#finish-red-3 {
+  grid-area: b4;
+}
+
+#finish-blue-0 {
+  grid-area: c1;
+}
+
+#finish-blue-1 {
+  grid-area: c2;
+}
+
+#finish-blue-2 {
+  grid-area: c3;
+}
+
+#finish-blue-3 {
+  grid-area: c4;
+}
+
+#finish-yellow-0 {
+  grid-area: d1;
+}
+
+#finish-yellow-1 {
+  grid-area: d2;
+}
+
+#finish-yellow-2 {
+  grid-area: d3;
+}
+
+#finish-yellow-3 {
+  grid-area: d4;
+}
+
+.f0 {
+  grid-area: aa;
+}
+
+.f1 {
+  grid-area: ab;
+}
+
+.f2 {
+  grid-area: ac;
+}
+
+.f3 {
+  grid-area: ad;
+}
+
+.f4 {
+  grid-area: ae;
+}
+
+.f5 {
+  grid-area: af;
+}
+
+.f6 {
+  grid-area: ag;
+}
+
+.f7 {
+  grid-area: ah;
+}
+
+.f8 {
+  grid-area: ai;
+}
+
+.f9 {
+  grid-area: aj;
+}
+
+.f10 {
+  grid-area: ba;
+}
+
+.f11 {
+  grid-area: bb;
+}
+
+.f12 {
+  grid-area: bc;
+}
+
+.f13 {
+  grid-area: bd;
+}
+
+.f14 {
+  grid-area: be;
+}
+
+.f15 {
+  grid-area: bf;
+}
+
+.f16 {
+  grid-area: bg;
+}
+
+.f17 {
+  grid-area: bh;
+}
+
+.f18 {
+  grid-area: bi;
+}
+
+.f19 {
+  grid-area: bj;
+}
+
+.f20 {
+  grid-area: ca;
+}
+
+.f21 {
+  grid-area: cb;
+}
+
+.f22 {
+  grid-area: cc;
+}
+
+.f23 {
+  grid-area: cd;
+}
+
+.f24 {
+  grid-area: ce;
+}
+
+.f25 {
+  grid-area: cf;
+}
+
+.f26 {
+  grid-area: cg;
+}
+
+.f27 {
+  grid-area: ch;
+}
+
+.f28 {
+  grid-area: ci;
+}
+
+.f29 {
+  grid-area: cj;
+}
+
+.f30 {
+  grid-area: da;
+}
+
+.f31 {
+  grid-area: db;
+}
+
+.f32 {
+  grid-area: dc;
+}
+
+.f33 {
+  grid-area: dd;
+}
+
+.f34 {
+  grid-area: de;
+}
+
+.f35 {
+  grid-area: df;
+}
+
+.f36 {
+  grid-area: dg;
+}
+
+.f37 {
+  grid-area: dh;
+}
+
+.f38 {
+  grid-area: di;
+}
+
+.f39 {
+  grid-area: dj;
 }

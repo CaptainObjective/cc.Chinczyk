@@ -1,3 +1,4 @@
+
 import Pawn from './Pawn';
 
 class Player {
@@ -52,10 +53,6 @@ class Player {
       }
     }
     this.renderHome();
-  }
-
-  enterFinish() {
-    //TODO
   }
 }
 

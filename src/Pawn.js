@@ -9,13 +9,12 @@ class Pawn {
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from = this.position) {
-    //Pionki mogą "krążyć" wokół planszy
+    // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
-    //Sumowanie wyrzuconych oczek dla każdego pionka
+    // Sumowanie wyrzuconych oczek dla każdego pionka
     this.diceRollSum = this.diceRollSum + diceRoll;
-    console.log(this.diceRollSum);
-    //Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
+    // Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
     if(this.diceRollSum > 43) {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
@@ -29,7 +28,7 @@ class Pawn {
       from = this.position;
       console.log('Miejsce w bazie jest zajęte');
     }
-    //Warunek wejścia do bazy
+    // Warunek wejścia do bazy
     else if(this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).children.length == 0) {
       this.clearField(from)
       document.getElementById(`finish-${String(this.color)}-${this.diceRollSum % 10}`).appendChild(this.render());
