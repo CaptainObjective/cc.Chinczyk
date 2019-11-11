@@ -14,7 +14,6 @@ class Player {
     this.renderHome();
   }
 
-  // musiałam zmienić na status pionka, bo zielony po wyjściu miał pozycję 0, co powodowało, że nie znikał z homeDiv //
   renderHome() {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
@@ -29,6 +28,16 @@ class Player {
         return this.pawns[i];
       }
     }
+  }
+
+  // zwraca TRUE, gdy wszystkie pionki gracza są w bazie
+  isAllHome() {
+    for (let pawn of this.pawns) {
+      if(!pawn.isHome()) {
+        return false;
+      } 
+    } 
+    return true;
   }
 
   move(diceRoll) {

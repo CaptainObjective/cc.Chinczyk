@@ -17,7 +17,26 @@ class Game {
   }
 
   makeMove() {
-    this.players[this.currentPlayerIndex].move(Dice.throwDice());
+    let diceRoll = 0;
+    let counter = 2;
+    let allowThrowDice = false;
+    
+    // gracz ma dodatkowy rzut, gdy wypadnie 6
+    do {
+      allowThrowDice = false;
+      diceRoll = Dice.throwDice();
+      this.players[this.currentPlayerIndex].move(diceRoll);
+      
+      // gracz w bazie ma trzy rzuty, aby wyjść
+      if(this.players[this.currentPlayerIndex].isAllHome()) {
+        if (counter > 0) {
+          allowThrowDice = true;
+          counter --;
+          console.log('kolejna próba wyjścia z bazy')
+        }
+      }
+    } while (diceRoll === 6 || allowThrowDice);
+    console.log('zmiana gracza');
     this.switchToNextPlayer();
   }
 
