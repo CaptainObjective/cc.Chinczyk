@@ -17,7 +17,12 @@ class Game {
   }
 
   makeMove() {
-    this.players[this.currentPlayerIndex].move(Dice.throwDice());
+    let diceRoll = 0;
+    // this.players[this.currentPlayerIndex].move(diceRoll);
+    do {
+      diceRoll = Dice.throwDice();
+      this.players[this.currentPlayerIndex].move(diceRoll);
+    } while (diceRoll === 6);
     this.switchToNextPlayer();
   }
 
