@@ -56,6 +56,7 @@ h1 {
 .finish-blue {
   background-color: var(--blue);
 }
+.start-yellow,
 .finish-yellow {
   background-color: var(--yellow);
 }
