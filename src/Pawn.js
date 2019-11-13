@@ -1,12 +1,14 @@
 import { finished } from "stream";
 
 class Pawn {
-  constructor(color, id) {
+  constructor(color, num) {
     this.position = null;
     this.color = color;
     this.status = 'in_home';
     this.diceRollSum = 0;
-    this.id = id;
+    // przekazany do nadania id pionka
+    this.num = num;
+    // wskazanie czy pionek został wybrany 
     this.isSelected = false;
   }
 
@@ -19,7 +21,7 @@ class Pawn {
     // Sumowanie wyrzuconych oczek dla każdego pionka
     this.diceRollSum = this.diceRollSum + diceRoll;
     // Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
-    if(this.diceRollSum > 43) {
+    if (this.diceRollSum > 43) {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
@@ -33,15 +35,16 @@ class Pawn {
       console.log('Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
-    else if(this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${(this.color)}-${this.diceRollSum % 10}`).children.length == 0) {
+    else if (this.diceRollSum > 39 && this.diceRollSum < 44 && document.getElementById(`finish-${(this.color)}-${this.diceRollSum % 10}`).children.length == 0) {
       this.clearField(from)
       document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
-      this.status ='finished';
+      this.status = 'finished';
       console.log('Pionek w bazie!');
     }
-    else { 
+    else {
       this.clearField(from)
       document.getElementById(this.position).appendChild(this.render());
+      //??????
       this.myCallback();
     }
 
@@ -59,12 +62,12 @@ class Pawn {
   render() {
     const element = document.createElement('div');
     element.classList.add('pawn', `pawn-${this.color}`);
-    element.setAttribute('id', this.color + this.id);
+    element.setAttribute('id', this.color + this.num);
     return element;
   }
 
   beat() {
-    
+
   }
 
   isHome() {
@@ -96,15 +99,26 @@ class Pawn {
   //   return
   // }
 
+  // pawnAddEvent(obiect) {
+  // console.log(this);
+  // const pawnId = obiect.color + obiect.num;
+  // const pawn = document.getElementById(pawnId);
+  // pawn.style.boxShadow = 'inset 0 0 1em black';
+  // obiect.isSelected = !obiect.isSelected;
+  // }
+  
   //Callback dodający eventListener
   myCallback() {
-    const pawnId = this.color + this.id;
+    const pawnId = this.color + this.num;
     const pawn = document.getElementById(pawnId);
+    pawn.style.cursor = 'pointer';
     let _this = this;
+
     pawn.addEventListener('click', function () {
-      console.log(_this.color + _this.id);
+      pawn.style.boxShadow = 'inset 0 0 1em black';
       _this.isSelected = !_this.isSelected;
-    })
+      console.log(pawnId)
+    });
   }
 
 }

@@ -16,8 +16,8 @@ class Game {
     this.registerListeners();
   }
 
-  makeMove() {
-    // let selectedPawn = await pawnSelection();
+  // makeMove() {
+  makeThrow() {
     let diceRoll = 0;
     let counter = 2;
     let allowThrowDice = false;
@@ -27,8 +27,8 @@ class Game {
       allowThrowDice = false;
       diceRoll = Dice.throwDice();
       this.players[this.currentPlayerIndex].move(diceRoll);
-      // this.selectedPawn.move(diceRoll);
 
+      console.log(`wyrzuciłeś ${diceRoll}`);
       // gracz w bazie ma trzy rzuty, aby wyjść
       if (this.players[this.currentPlayerIndex].isAllHome()) {
         if (counter > 0) {
@@ -38,18 +38,31 @@ class Game {
         }
       }
     } while (diceRoll === 6 || allowThrowDice);
-    console.log('zmiana gracza');
+    // return diceRoll;
     this.switchToNextPlayer();
   }
+
+  // makeMove(pawnToMove, diceRoll) {
+      // this.players[this.currentPlayerIndex].move(diceRoll);
+
+    // this.switchToNextPlayer();
+
+  // }
 
   switchToNextPlayer() {
     this.currentPlayerIndex++;
     if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
   }
-
+//przycisk tylko do rzutu kostką
   registerListeners() {
     const throwDiceButton = document.querySelector('#throwDice');
-    throwDiceButton.addEventListener('click', () => this.makeMove());
+    throwDiceButton.addEventListener('click', () => this.makeThrow());
+  }
+//dodanie przycisku do przesuwania
+  toMovePown() {
+    const pawnMove = document.querySelector('#pawnMove');
+    pawnMove.addEventListener('click', () => 
+    this.makeMove())
   }
 }
 

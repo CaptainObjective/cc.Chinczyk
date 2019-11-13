@@ -1,4 +1,3 @@
-
 import Pawn from './Pawn';
 
 class Player {
@@ -7,11 +6,11 @@ class Player {
     this.color = color;
     this.startPos = startPos;
     //przechowuje informację o wybranym pionku
-    this.selectedPawn = 0;
+    // this.selectedPawn = 0;
     this.pawns = [];
     this.homeDiv = document.querySelector(`#home-area-${this.color}`);
-    
-    //dodawanie id oraz Callback do tworzenia eventListener dla pionka
+
+    //dodawanie numery id do tworzenia eventListener dla pionka
     for (let i = 0; i < 4; i++) {
       this.pawns.push(new Pawn(color, i));
     }
@@ -22,17 +21,24 @@ class Player {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
       (pawn.isHome()) && this.homeDiv.appendChild(pawn.render());
-    pawn.myCallback();
+      pawn.myCallback();
     });
   }
 
-  // znajdujemy pionki, które są w grze//
+  // znajdujemy pionki, które są w grze i które są zaznaczone//
   getPawn() {
-    for (let i = 0; i < 4; i++) {
-      if (!this.pawns[i].isFinished() && this.pawns[i].isSelected) {
-        return this.pawns[i];
+    console.log("Kolej gracza: " + this.color);
+    // if (this.pawns.some(pawn => {
+    //   pawn.isSelected
+    // })) {
+      for (let i = 0; i < 4; i++) {
+        if (!this.pawns[i].isFinished() && this.pawns[i].isSelected) {
+          return this.pawns[i];
+        }
       }
-    }
+    // } else {
+      // console.log('musisz wybrać pionka')
+    // }
   }
 
   // zwraca TRUE, gdy wszystkie pionki gracza są w bazie
@@ -47,17 +53,15 @@ class Player {
 
   move(diceRoll) {
     const pawnToMove = this.getPawn();
-    console.log("Kolej gracza: " + this.color);
-    console.log("wyrzuciles: " + diceRoll);
-    console.log("ruvh pionkiem: " + pawnToMove.id);
+    console.log(`wyrzuciles: ${diceRoll}`);
+    console.log(`ruch pionkiem: ${pawnToMove.num}`);
 
     if (pawnToMove.isOnMap()) {
       pawnToMove.move(diceRoll, pawnToMove.position);
-      // this.addPawnListener();
     } else {
       this.leaveHome(diceRoll, pawnToMove);
-      // this.addPawnListener();
     }
+    return pawnToMove;
   }
 
   leaveHome(diceRoll, pawnToMove) {
