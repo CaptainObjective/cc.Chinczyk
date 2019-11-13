@@ -44,14 +44,9 @@ class Pawn {
     else {
       this.clearField(from)
       document.getElementById(this.position).appendChild(this.render());
-      //??????
-      this.myCallback();
+      //Dodajemy event do pionka na planszy
+      this.addListener();
     }
-
-    //  // bicie do przemyślenia - jak zmienić this.status zbitego piona na "in_home" ?
-    // if (document.getElementById(this.position).children.length > 1) {
-    //   document.getElementById(this.position).removeChild(document.getElementById(this.position).children[0]);
-    // }
   }
 
   clearField(from) {
@@ -62,12 +57,9 @@ class Pawn {
   render() {
     const element = document.createElement('div');
     element.classList.add('pawn', `pawn-${this.color}`);
+    //dodajemy id do pawna
     element.setAttribute('id', this.color + this.num);
     return element;
-  }
-
-  beat() {
-
   }
 
   isHome() {
@@ -94,28 +86,23 @@ class Pawn {
     this.status = "finished";
   }
 
-  // allPawnsFinished() {
-  //   if(document.getElementById(`finish-${this.color}-0`).children.length == 1 && document.getElementById(`finish-${this.color}-1`).children.length == 1 && document.getElementById(`finish-${this.color}-2`).children.length == 1 && document.getElementById(`finish-${this.color}-3`).children.length == 1 &&
-  //   return
-  // }
-
-  // pawnAddEvent(obiect) {
-  // console.log(this);
-  // const pawnId = obiect.color + obiect.num;
-  // const pawn = document.getElementById(pawnId);
-  // pawn.style.boxShadow = 'inset 0 0 1em black';
-  // obiect.isSelected = !obiect.isSelected;
-  // }
-  
-  //Callback dodający eventListener
-  myCallback() {
+  //metoda dodająca event
+  addListener() {
     const pawnId = this.color + this.num;
     const pawn = document.getElementById(pawnId);
     pawn.style.cursor = 'pointer';
-    let _this = this;
-
-    pawn.addEventListener('click', function () {
+    if (this.isSelected) {
       pawn.style.boxShadow = 'inset 0 0 1em black';
+    }
+
+    let _this = this;
+    //ustawia, które pionki zostały wskazane
+    pawn.addEventListener('click', function () {
+      if (!_this.isSelected) {
+        pawn.style.boxShadow = 'inset 0 0 1em black';
+      } else {
+        pawn.style.boxShadow = 'none';
+      }
       _this.isSelected = !_this.isSelected;
       console.log(pawnId)
     });

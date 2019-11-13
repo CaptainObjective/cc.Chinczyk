@@ -5,12 +5,10 @@ class Player {
     this.name = name;
     this.color = color;
     this.startPos = startPos;
-    //przechowuje informację o wybranym pionku
-    // this.selectedPawn = 0;
     this.pawns = [];
     this.homeDiv = document.querySelector(`#home-area-${this.color}`);
 
-    //dodawanie numery id do tworzenia eventListener dla pionka
+    //dodawanie numery id do tworzenia eventów dla pionka
     for (let i = 0; i < 4; i++) {
       this.pawns.push(new Pawn(color, i));
     }
@@ -21,24 +19,18 @@ class Player {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
       (pawn.isHome()) && this.homeDiv.appendChild(pawn.render());
-      pawn.myCallback();
+      //dodajemy event pionka przy renderwaniu Home
+      pawn.addListener();
     });
   }
 
   // znajdujemy pionki, które są w grze i które są zaznaczone//
   getPawn() {
-    console.log("Kolej gracza: " + this.color);
-    // if (this.pawns.some(pawn => {
-    //   pawn.isSelected
-    // })) {
-      for (let i = 0; i < 4; i++) {
-        if (!this.pawns[i].isFinished() && this.pawns[i].isSelected) {
-          return this.pawns[i];
-        }
+    for (let i = 0; i < 4; i++) {
+      if (!this.pawns[i].isFinished() && this.pawns[i].isSelected) {
+        return this.pawns[i];
       }
-    // } else {
-      // console.log('musisz wybrać pionka')
-    // }
+    }
   }
 
   // zwraca TRUE, gdy wszystkie pionki gracza są w bazie
@@ -53,23 +45,30 @@ class Player {
 
   move(diceRoll) {
     const pawnToMove = this.getPawn();
-    console.log(`wyrzuciles: ${diceRoll}`);
-    console.log(`ruch pionkiem: ${pawnToMove.num}`);
+
+    //każemy graczowi wskazać pionek
+    if (!pawnToMove) {
+      console.log('Musisz wskazać pionka');
+      return false;
+    }
 
     if (pawnToMove.isOnMap()) {
       pawnToMove.move(diceRoll, pawnToMove.position);
     } else {
       this.leaveHome(diceRoll, pawnToMove);
     }
-    return pawnToMove;
+    console.log(`ruch pionkiem: ${pawnToMove.num}`);
+    return true;
   }
 
   leaveHome(diceRoll, pawnToMove) {
     if (pawnToMove.isHome()) {
-      if (diceRoll == 6 || diceRoll == 1) {
+      if (diceRoll == 6) {
         pawnToMove.move(0, this.startPos);
         pawnToMove.setOnMap();
         console.log('start pionka');
+      } else {
+        console.log('Musisz wyrzucic 6 by wyjsc z domku');
       }
     }
     this.renderHome();
