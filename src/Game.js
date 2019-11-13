@@ -17,21 +17,23 @@ class Game {
   }
 
   makeMove() {
+    // let selectedPawn = await pawnSelection();
     let diceRoll = 0;
     let counter = 2;
     let allowThrowDice = false;
-    
+
     // gracz ma dodatkowy rzut, gdy wypadnie 6
     do {
       allowThrowDice = false;
       diceRoll = Dice.throwDice();
       this.players[this.currentPlayerIndex].move(diceRoll);
-      
+      // this.selectedPawn.move(diceRoll);
+
       // gracz w bazie ma trzy rzuty, aby wyjść
-      if(this.players[this.currentPlayerIndex].isAllHome()) {
+      if (this.players[this.currentPlayerIndex].isAllHome()) {
         if (counter > 0) {
           allowThrowDice = true;
-          counter --;
+          counter--;
           console.log('kolejna próba wyjścia z bazy')
         }
       }

@@ -1,11 +1,13 @@
 import { finished } from "stream";
 
 class Pawn {
-  constructor(color) {
+  constructor(color, id) {
     this.position = null;
     this.color = color;
     this.status = 'in_home';
     this.diceRollSum = 0;
+    this.id = id;
+    this.isSelected = false;
   }
 
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
@@ -40,6 +42,7 @@ class Pawn {
     else { 
       this.clearField(from)
       document.getElementById(this.position).appendChild(this.render());
+      this.myCallback();
     }
 
     //  // bicie do przemyślenia - jak zmienić this.status zbitego piona na "in_home" ?
@@ -56,6 +59,7 @@ class Pawn {
   render() {
     const element = document.createElement('div');
     element.classList.add('pawn', `pawn-${this.color}`);
+    element.setAttribute('id', this.color + this.id);
     return element;
   }
 
@@ -91,6 +95,17 @@ class Pawn {
   //   if(document.getElementById(`finish-${this.color}-0`).children.length == 1 && document.getElementById(`finish-${this.color}-1`).children.length == 1 && document.getElementById(`finish-${this.color}-2`).children.length == 1 && document.getElementById(`finish-${this.color}-3`).children.length == 1 &&
   //   return
   // }
+
+  //Callback dodający eventListener
+  myCallback() {
+    const pawnId = this.color + this.id;
+    const pawn = document.getElementById(pawnId);
+    let _this = this;
+    pawn.addEventListener('click', function () {
+      console.log(_this.color + _this.id);
+      _this.isSelected = !_this.isSelected;
+    })
+  }
 
 }
 
