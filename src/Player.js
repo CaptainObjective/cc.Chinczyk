@@ -1,4 +1,3 @@
-
 import Pawn from './Pawn';
 
 class Player {
@@ -10,7 +9,7 @@ class Player {
     this.homeDiv = document.querySelector(`#home-area-${this.color}`);
 
     for (let i = 0; i < 4; i++) {
-      this.pawns.push(new Pawn(color));
+      this.pawns.push(new Pawn(color, this.renderHome));
     }
     this.renderHome();
   }
@@ -18,7 +17,7 @@ class Player {
   renderHome() {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
-      (pawn.isHome()) && this.homeDiv.appendChild(pawn.render());
+      pawn.isHome() && this.homeDiv.appendChild(pawn.render());
     });
   }
 
@@ -34,36 +33,35 @@ class Player {
   // zwraca TRUE, gdy wszystkie pionki gracza są w bazie
   isAllHome() {
     for (let pawn of this.pawns) {
-      if(!pawn.isHome()) {
+      if (!pawn.isHome()) {
         return false;
-      } 
-    } 
+      }
+    }
     return true;
   }
 
-  move(diceRoll) {
+  move(diceRoll, fields) {
     const pawnToMove = this.getPawn();
-    console.log("Kolej gracza: " + this.color);
-    console.log("wyrzuciles: " + diceRoll);
-    
+    console.log('Kolej gracza: ' + this.color);
+    console.log('wyrzuciles: ' + diceRoll);
+
     if (pawnToMove.isOnMap()) {
-      pawnToMove.move(diceRoll, pawnToMove.position);
+      pawnToMove.move(diceRoll, pawnToMove.position, fields);
     } else {
-      this.leaveHome(diceRoll, pawnToMove);
+      this.leaveHome(diceRoll, pawnToMove, fields);
     }
   }
 
-  leaveHome(diceRoll, pawnToMove) {
+  leaveHome(diceRoll, pawnToMove, fields) {
     if (pawnToMove.isHome()) {
       if (diceRoll == 6 || diceRoll == 1) {
-        pawnToMove.move(0, this.startPos);
+        pawnToMove.move(0, this.startPos, fields);
         pawnToMove.setOnMap();
         console.log('start pionka');
       }
     }
     this.renderHome();
   }
-
 }
 
 export default Player;
