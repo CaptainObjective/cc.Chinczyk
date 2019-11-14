@@ -1,18 +1,22 @@
+import Toastify from 'toastify-js'
+
 class Pawn {
   constructor(color) {
     this.position = null;
     this.color = color;
     this.status = 'in_home';
     this.diceRollSum = 0;
+
   }
 
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from, fields) {
+    if (this.position != null) this.popUp(this.popUpText = `Wyrzuciłeś ${diceRoll}`);
     // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
-
+    
     // Sumowanie wyrzuconych oczek dla każdego pionka
     this.diceRollSum = this.diceRollSum + diceRoll;
     // Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
@@ -22,6 +26,7 @@ class Pawn {
       from = this.position;
       console.log('Wyrzuciłeś za dużo!');
     }
+    
     // Próba wejścia na zajęte miejsce w bazie
     else if (
       this.diceRollSum > 39 &&
@@ -31,7 +36,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      console.log('Miejsce w bazie jest zajęte');
+      this.popUp(this.popUpText = 'Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
     else if (
@@ -42,7 +47,7 @@ class Pawn {
       this.clearField(from);
       document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
       this.status = 'finished';
-      console.log('Pionek w bazie!');
+      this.popUp(this.popUpText = 'Za dużo');
     } else {
       this.clearField(from);
       document.getElementById(this.position).appendChild(this.render());
@@ -106,11 +111,20 @@ class Pawn {
   setFinished() {
     this.status = 'finished';
   }
+  // Pop-up
+  popUp(popUpText) {
+    Toastify({
+      text: popUpText,
+      duration: 2500,
+      newWindow: true,
+      gravity: "top", 
+      position: 'right',
+      backgroundColor: this.color,
+      stopOnFocus: true,
+    }).showToast();
 
-  // allPawnsFinished() {
-  //   if(document.getElementById(`finish-${this.color}-0`).children.length == 1 && document.getElementById(`finish-${this.color}-1`).children.length == 1 && document.getElementById(`finish-${this.color}-2`).children.length == 1 && document.getElementById(`finish-${this.color}-3`).children.length == 1 &&
-  //   return
-  // }
+  }
 }
+
 
 export default Pawn;

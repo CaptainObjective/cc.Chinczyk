@@ -1,6 +1,8 @@
 import Player from './Player';
 import Dice from './Dice';
 import Field from './Field';
+import { rollValue } from './Dice'
+
 
 export const colors = ['green', 'red', 'blue', 'yellow'];
 
@@ -30,7 +32,8 @@ class Game {
     // gracz ma dodatkowy rzut, gdy wypadnie 6
     do {
       allowThrowDice = false;
-      diceRoll = Dice.throwDice();
+      diceRoll = rollValue();
+      
       this.players[this.currentPlayerIndex].move(diceRoll, this.fields);
 
       // gracz w bazie ma trzy rzuty, aby wyjść
@@ -58,3 +61,5 @@ class Game {
 }
 
 export default Game;
+
+
