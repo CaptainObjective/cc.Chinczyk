@@ -1,4 +1,5 @@
 import Pawn from './Pawn';
+import Toastify from 'toastify-js'
 
 class Player {
   constructor(name, color, startPos) {
@@ -57,10 +58,23 @@ class Player {
       if (diceRoll == 6 || diceRoll == 1) {
         pawnToMove.move(0, this.startPos, fields);
         pawnToMove.setOnMap();
-        console.log('start pionka');
-      }
+        this.popUpHome(this.popUpText = `Wyszedłeś z bazy!`)
+      } else this.popUpHome(this.popUpText = 'Spróbuj ponownie!')
     }
     this.renderHome();
+  }
+
+  popUpHome(popUpText) {
+    Toastify({
+      text: popUpText,
+      duration: 2500,
+      newWindow: true,
+      gravity: "top", 
+      position: 'right',
+      backgroundColor: this.color,
+      stopOnFocus: true,
+    }).showToast();
+
   }
 }
 

@@ -1,5 +1,6 @@
 import Toastify from 'toastify-js'
 
+
 class Pawn {
   constructor(color) {
     this.position = null;
@@ -12,7 +13,8 @@ class Pawn {
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from, fields) {
-    if (this.position != null) this.popUp(this.popUpText = `Wyrzuciłeś ${diceRoll}`);
+    if (this.position != null)
+    this.popUpPawn(this.popUpText = `Wyrzuciłeś ${diceRoll}`);
     // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
@@ -24,7 +26,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      console.log('Wyrzuciłeś za dużo!');
+      this.popUpPawn(this.popUpText = 'Pionek w bazie!');
     }
     
     // Próba wejścia na zajęte miejsce w bazie
@@ -36,7 +38,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      this.popUp(this.popUpText = 'Miejsce w bazie jest zajęte');
+      this.popUpPawn(this.popUpText = 'Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
     else if (
@@ -47,7 +49,7 @@ class Pawn {
       this.clearField(from);
       document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
       this.status = 'finished';
-      this.popUp(this.popUpText = 'Za dużo');
+      this.popUp(this.popUpText = 'Pionek w bazie!');
     } else {
       this.clearField(from);
       document.getElementById(this.position).appendChild(this.render());
@@ -76,6 +78,7 @@ class Pawn {
   }
 
   wasBeat() {
+    this.popUpPawn(this.popUpText = 'Zbiłeś piona!')
     console.log('Bicie');
     this.status = 'in_home';
     this.diceRollSum = 0;
@@ -112,7 +115,7 @@ class Pawn {
     this.status = 'finished';
   }
   // Pop-up
-  popUp(popUpText) {
+  popUpPawn(popUpText) {
     Toastify({
       text: popUpText,
       duration: 2500,

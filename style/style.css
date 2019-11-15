@@ -13,13 +13,29 @@ body {
 }
 
 .game-box {
+  position: absolute;
+  background: #dd5e89;
+  background: -webkit-linear-gradient(to right, #f7bb97, #dd5e89);
+  background: linear-gradient(to right, #f7bb97, #dd5e89);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
-  height: 100vh;
-  z-index: 1;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.board-box {
+  width: 50%;
+  height: 100%;
+}
+
+.console {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -27,6 +43,7 @@ h1 {
   font-size: 64px;
   margin: 0 0 10px 0;
   letter-spacing: 5px;
+  text-align: center;
 }
 
 .field {
@@ -128,7 +145,15 @@ h1 {
   font-weight: bold;
 }
 
-#dice-box{ 
-  width: 200px;
+#dice-box {
+  width: 250px;
   height: 200px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-image: url(/style/img/floor.jpg);
+  background-size: cover;
+  background-position: center;
+  border: 3px #000000 solid;
+  border-radius: 10px;
 }

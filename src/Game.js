@@ -1,5 +1,4 @@
 import Player from './Player';
-import Dice from './Dice';
 import Field from './Field';
 import { rollValue } from './Dice'
 
@@ -58,6 +57,8 @@ class Game {
     const throwDiceButton = document.querySelector('#throwDice');
     throwDiceButton.addEventListener('click', () => this.makeMove());
   }
+
+
 }
 
 export default Game;
