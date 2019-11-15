@@ -1,9 +1,13 @@
 class Pawn {
-  constructor(color) {
+  constructor(color, num) {
     this.position = null;
     this.color = color;
     this.status = 'in_home';
     this.diceRollSum = 0;
+    // przekazany do nadania id pionka
+    this.num = num;
+    // wskazanie czy pionek został wybrany 
+    this.isSelected = false;
   }
 
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
@@ -46,6 +50,8 @@ class Pawn {
     } else {
       this.clearField(from);
       document.getElementById(this.position).appendChild(this.render());
+      //Dodajemy event do pionka na planszy
+      this.addListener();
     }
 
     //Cokolowiek by sie nie zadzialo to :
@@ -67,6 +73,9 @@ class Pawn {
   render() {
     const element = document.createElement('div');
     element.classList.add('pawn', `pawn-${this.color}`);
+    //dodajemy id do pawna
+    element.setAttribute('id', this.color + this.num);
+    console.log(`render ${this.color}${this.num}`);
     return element;
   }
 
@@ -77,6 +86,9 @@ class Pawn {
     this.currentFieldNode.removeChild(this.currentFieldNode.firstChild);
     // wyrenderuj go z powrotem w domu
     document.querySelector(`#home-area-${this.color}`).appendChild(this.render());
+    //dodanie eventu do zbitego pionka
+    console.log(this);
+    this.addListener();
   }
 
   get currentFieldNode() {
@@ -107,10 +119,37 @@ class Pawn {
     this.status = 'finished';
   }
 
-  // allPawnsFinished() {
-  //   if(document.getElementById(`finish-${this.color}-0`).children.length == 1 && document.getElementById(`finish-${this.color}-1`).children.length == 1 && document.getElementById(`finish-${this.color}-2`).children.length == 1 && document.getElementById(`finish-${this.color}-3`).children.length == 1 &&
-  //   return
-  // }
+  //metoda dodająca event
+  addListener() {
+    const pawnId = this.color + this.num;
+    const pawn = document.getElementById(pawnId);
+    pawn.style.cursor = 'pointer';
+    if (this.isSelected) {
+      pawn.style.boxShadow = 'inset 0 0 1em black';
+    }
+    console.log(`dodanie eventu ${pawnId}`);
+    let _this = this;
+
+    //ustawia, które pionki zostały wskazane
+    pawn.addEventListener('click', function () {
+      if (!_this.isSelected) {
+        pawn.style.boxShadow = 'inset 0 0 1em black';
+      } else {
+        pawn.style.boxShadow = 'none';
+      }
+      _this.isSelected = !_this.isSelected;
+      console.log(`zaznaczono pionek: ${pawnId}`)
+    });
+  }
+
+  //odznaczanie pionka
+  unselect() {
+    this.isSelected = false;
+    const pawnId = this.color + this.num;
+    const pawn = document.getElementById(pawnId);
+    pawn.style.boxShadow = 'none';
+  }
+
 }
 
 export default Pawn;

@@ -28,6 +28,13 @@ h1 {
   letter-spacing: 5px;
 }
 
+button {
+  margin: 0.3rem;
+  padding: .5rem;
+  border: none;
+  cursor: pointer;
+}
+
 .field {
   background: #ffffff;
   border: 2px #000000 solid;

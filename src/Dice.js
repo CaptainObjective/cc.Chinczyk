@@ -9,6 +9,6 @@ class Dice {
 
 document.getElementById('test').addEventListener('change', e => (roll = Number(e.target.value)));
 
-//przy wartości Math.random wychodziły wartości = 7//
+// przy wartości Math.random wychodziły wartości = 7//
 
 export default Dice;

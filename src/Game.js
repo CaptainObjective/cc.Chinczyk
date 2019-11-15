@@ -8,52 +8,82 @@ class Game {
   constructor(numberOfPlayers) {
     this.players = [];
     this.numberOfPlayers = numberOfPlayers;
-
+    this.diceResult = 0;
+    this.counter = 2;
     for (let i = 0; i < numberOfPlayers; i++) {
       this.players.push(new Player(`Gracz ${i}`, colors[i], i * 10));
     }
-    this.currentPlayerIndex = 0;
-
     this.fields = [];
     for (let i = 0; i < 40; i++) {
       this.fields.push(new Field(i));
+    }    
+
+    this.currentPlayerIndex = -1;
+    this.switchToNextPlayer();
+    this.registerListeners();
+    this.toMovePawn();
+  }
+
+  //metoda do rzucania kostką
+  makeThrow() {
+    this.diceResult = Dice.throwDice();
+    console.log(`--> wynik rzutu kostką: ${this.diceResult}`);
+    document.querySelector('#throwDice').disabled = true;
+    document.querySelector('#pawnMove').disabled = false;
+  }
+
+  //metoda do ruszania pionka
+  makeMove() {
+    //jeżeli gracz nie wskazał pionka to czekamy, aż wskarze pionka
+    if (!this.players[this.currentPlayerIndex].move(this.diceResult, this.fields)) {
+      return;
     }
 
-    this.registerListeners();
-  }
-
-  makeMove() {
-    let diceRoll = 0;
-    let counter = 2;
-    let allowThrowDice = false;
-
     // gracz ma dodatkowy rzut, gdy wypadnie 6
-    do {
-      allowThrowDice = false;
-      diceRoll = Dice.throwDice();
-      this.players[this.currentPlayerIndex].move(diceRoll, this.fields);
+    if (this.diceResult === 6) {
+      console.log('Brawo! Dodatkowy rzut kostką')
+      document.querySelector('#throwDice').disabled = false;
+      document.querySelector('#pawnMove').disabled = true;
+      return;
+    }
 
-      // gracz w bazie ma trzy rzuty, aby wyjść
-      if (this.players[this.currentPlayerIndex].isAllHome()) {
-        if (counter > 0) {
-          allowThrowDice = true;
-          counter--;
-          console.log('kolejna próba wyjścia z bazy');
-        }
+    // wszyscy pionki w domku, możliwość trzech rzutów
+    if (this.players[this.currentPlayerIndex].isAllHome()) {
+      if (this.counter > 0) {
+        console.log(`Masz dodatkowy rzut, aby wyjść z domku`);
+        this.counter--;
+        document.querySelector('#throwDice').disabled = false;
+        document.querySelector('#pawnMove').disabled = true;
+        return;
       }
-    } while (diceRoll === 6 || allowThrowDice);
-    console.log('zmiana gracza');
+    }
+
+    //wszystko ok, zmieniamy gracza
     this.switchToNextPlayer();
+    document.querySelector('#throwDice').disabled = false;
+    document.querySelector('#pawnMove').disabled = true;
   }
 
+  //restartuje counter do pierwotnej wartości
   switchToNextPlayer() {
     this.currentPlayerIndex++;
     if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
+    console.log(`----> kolej gracza: ${this.players[this.currentPlayerIndex].color}`)
+    this.counter = 2;
   }
-
+  //przycisk tylko do rzutu kostką
   registerListeners() {
     const throwDiceButton = document.querySelector('#throwDice');
-    throwDiceButton.addEventListener('click', () => this.makeMove());
+    throwDiceButton.disabled = false;
+    throwDiceButton.addEventListener('click', () => this.makeThrow());
+  }
+  //dodanie przycisku do przesuwania
+  toMovePawn() {
+    const pawnMove = document.querySelector('#pawnMove');
+    pawnMove.disabled = true;
+    pawnMove.addEventListener('click', () => {
+      this.makeMove();
+    });
   }
 }
 
