@@ -1,5 +1,3 @@
-import { finished } from "stream";
-
 class Pawn {
   constructor(color, num) {
     this.position = null;
@@ -96,6 +94,7 @@ class Pawn {
     }
 
     let _this = this;
+
     //ustawia, które pionki zostały wskazane
     pawn.addEventListener('click', function () {
       if (!_this.isSelected) {
@@ -104,8 +103,16 @@ class Pawn {
         pawn.style.boxShadow = 'none';
       }
       _this.isSelected = !_this.isSelected;
-      console.log(pawnId)
+      console.log(`zaznaczono pionek: ${pawnId}`)
     });
+  }
+
+  //odznaczanie pionka
+  unselect() {
+    this.isSelected = false;
+    const pawnId = this.color + this.num;
+    const pawn = document.getElementById(pawnId);
+    pawn.style.boxShadow = 'none';
   }
 
 }

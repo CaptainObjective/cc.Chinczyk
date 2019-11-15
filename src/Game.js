@@ -22,7 +22,7 @@ class Game {
   //metoda do rzucania kostką
   makeThrow() {
     this.diceResult = Dice.throwDice();
-    console.log(this.diceResult);
+    console.log(`--> wynik rzutu kostką: ${this.diceResult}`);
     document.querySelector('#throwDice').disabled = true;
     document.querySelector('#pawnMove').disabled = false;
   }
@@ -63,7 +63,7 @@ class Game {
   switchToNextPlayer() {
     this.currentPlayerIndex++;
     if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
-    console.log(`kolej gracza ${this.players[this.currentPlayerIndex].color}`)
+    console.log(`----> kolej gracza: ${this.players[this.currentPlayerIndex].color}`)
     this.counter = 2;
   }
   //przycisk tylko do rzutu kostką

@@ -19,8 +19,9 @@ class Player {
     this.homeDiv.innerHTML = '';
     this.pawns.map(pawn => {
       (pawn.isHome()) && this.homeDiv.appendChild(pawn.render());
-      //dodajemy event pionka przy renderwaniu Home
-      pawn.addListener();
+      //dodawanie eventu do pionków przy renderowaniu domu
+      if (pawn.isHome())
+        pawn.addListener();
     });
   }
 
@@ -57,7 +58,10 @@ class Player {
     } else {
       this.leaveHome(diceRoll, pawnToMove);
     }
-    console.log(`ruch pionkiem: ${pawnToMove.num}`);
+    console.log(`ruch pionkiem: ${pawnToMove.color + pawnToMove.num}`);
+
+    //po ruchu odznaczamy pionki gracza
+    this.unselectAll();
     return true;
   }
 
@@ -74,6 +78,14 @@ class Player {
     this.renderHome();
   }
 
+  //odznaczanie wszystkich pionków gracza na planszy
+  unselectAll() {
+    for (let pawn of this.pawns) {
+      if (!pawn.isHome()) {
+        pawn.unselect();
+      }
+    }
+  }
 }
 
 export default Player;
