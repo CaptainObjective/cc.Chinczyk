@@ -1,5 +1,6 @@
 
 import Pawn from './Pawn';
+import Toastify from 'toastify-js'
 
 class Player {
   constructor(name, color, startPos) {
@@ -86,6 +87,17 @@ class Player {
         pawn.unselect();
       }
     }
+  }
+  popUpHome(popUpText) {
+    Toastify({
+      text: popUpText,
+      duration: 2500,
+      newWindow: true,
+      gravity: "top", 
+      position: 'right',
+      backgroundColor: this.color,
+      stopOnFocus: true,
+    }).showToast();
   }
 }
 

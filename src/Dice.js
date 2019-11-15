@@ -1,3 +1,4 @@
+import rollADie from 'roll-a-die';
 let roll = 0;
 
 class Dice {
@@ -7,7 +8,27 @@ class Dice {
   }
 }
 
-document.getElementById('test').addEventListener('change', e => (roll = Number(e.target.value)));
+
+function response(res) {
+}
+
+export function rollValue() {
+  const element = document.getElementById('dice-box');
+  const numberOfDice = +1;
+  const throwDice = Dice.throwDice();
+  const delay = 20000;
+  const options = {
+    element, // element to display the animated dice in.
+    numberOfDice, // number of dice to use 
+    callback: response,
+    values: [throwDice],
+    delay: delay
+  }
+  rollADie(options);
+  return throwDice;
+}
+
+// document.getElementById('test').addEventListener('change', e => (roll = Number(e.target.value)));
 
 // przy wartości Math.random wychodziły wartości = 7//
 

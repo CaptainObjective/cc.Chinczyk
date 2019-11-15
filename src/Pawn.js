@@ -1,3 +1,6 @@
+import Toastify from 'toastify-js'
+
+
 class Pawn {
   constructor(color, num) {
     this.position = null;
@@ -13,10 +16,12 @@ class Pawn {
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from, fields) {
+    if (this.position != null)
+    this.popUpPawn(this.popUpText = `Ruszyłeś się o  ${diceRoll} do przodu`);
     // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
-
+    
     // Sumowanie wyrzuconych oczek dla każdego pionka
     this.diceRollSum = this.diceRollSum + diceRoll;
     // Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
@@ -24,8 +29,9 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      console.log('Wyrzuciłeś za dużo!');
+      this.popUpPawn(this.popUpText = 'Wyrzuciłeś za dużo!');
     }
+    
     // Próba wejścia na zajęte miejsce w bazie
     else if (
       this.diceRollSum > 39 &&
@@ -35,7 +41,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      console.log('Miejsce w bazie jest zajęte');
+      this.popUpPawn(this.popUpText = 'Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
     else if (
@@ -46,7 +52,7 @@ class Pawn {
       this.clearField(from);
       document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
       this.status = 'finished';
-      console.log('Pionek w bazie!');
+      this.popUp(this.popUpText = 'Pionek w bazie!');
     } else {
       this.clearField(from);
       document.getElementById(this.position).appendChild(this.render());
@@ -80,6 +86,7 @@ class Pawn {
   }
 
   wasBeat() {
+    this.popUpPawn(this.popUpText = 'Zbiłeś piona!')
     console.log('Bicie');
     this.status = 'in_home';
     this.diceRollSum = 0;
@@ -150,6 +157,20 @@ class Pawn {
     pawn.style.boxShadow = 'none';
   }
 
+    // Pop-up
+    popUpPawn(popUpText) {
+      Toastify({
+        text: popUpText,
+        duration: 2500,
+        newWindow: true,
+        gravity: "top", 
+        position: 'right',
+        backgroundColor: this.color,
+        stopOnFocus: true,
+      }).showToast();
+    }
+
 }
+
 
 export default Pawn;

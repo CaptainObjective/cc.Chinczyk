@@ -3,10 +3,10 @@
 
 <head>
   <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="style/style.css" />
   <link rel="stylesheet" href="style/grid.css">
   <title>Chinczyk</title>
@@ -15,10 +15,8 @@
 
 <body>
   <div class="game-box">
-    <input type="number" id="test"/>
+    <div class="board">
     <h1>Chinczyk</h1>
-    <button id="throwDice">Rzut kostką!</button>
-    <button id="pawnMove">Ruch pionkiem</button>
     <div id="wrapper">
       <div class="field f0 start-green" id="0">0</div>
       <div class="field f1" id="1">1</div>
@@ -92,8 +90,15 @@
       <div class="player-name" id="player-yellow">Player 4</div>
 
       <div class="facebox"></div>
+      </div>
+      </div>
+      <div class="console">
+          <div id="player-order"></div>
+          <button id="pawnMove">Ruch pionkiem</button>
+          <button id="throwDice">Rzuć!</button>
+          <div id="dice-box"></div>
+      </div>
     </div>
-  </div>
-</body>
 
+  </body>
 </html>

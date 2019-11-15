@@ -1,6 +1,7 @@
 import Player from './Player';
-import Dice from './Dice';
 import Field from './Field';
+import { rollValue } from './Dice'
+
 
 export const colors = ['green', 'red', 'blue', 'yellow'];
 
@@ -26,7 +27,7 @@ class Game {
 
   //metoda do rzucania kostką
   makeThrow() {
-    this.diceResult = Dice.throwDice();
+    this.diceResult = rollValue();
     console.log(`--> wynik rzutu kostką: ${this.diceResult}`);
     document.querySelector('#throwDice').disabled = true;
     document.querySelector('#pawnMove').disabled = false;
@@ -85,6 +86,10 @@ class Game {
       this.makeMove();
     });
   }
+
+
 }
 
 export default Game;
+
+
