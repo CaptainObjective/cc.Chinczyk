@@ -51,7 +51,7 @@ class Player {
 
     //każemy graczowi wskazać pionek
     if (!pawnToMove) {
-      this.popUpHome(this.popUpText = 'Musisz wskazać pionka');
+      this.popUpHome('Wskaż pionka');
       console.log('Musisz wskazać pionka');
       return false;
     }
@@ -73,10 +73,10 @@ class Player {
       if (diceRoll == 6) {
         pawnToMove.move(0, this.startPos, fields);
         pawnToMove.setOnMap();
-        this.popUpHome(this.popUpText = 'Start pionka')
+        this.popUpHome('Start pionka')
         console.log('start pionka');
       } else {
-        this.popUpHome(this.popUpText = 'Musisz wyrzucić 6')
+        this.popUpHome('Musisz wyrzucić 6')
         console.log('Musisz wyrzucic 6 by wyjsc z domku');
       }
     }
@@ -91,9 +91,9 @@ class Player {
       }
     }
   }
-  popUpHome(popUpText) {
+  popUpHome(text) {
     Toastify({
-      text: popUpText,
+      text: text,
       duration: 2500,
       newWindow: true,
       gravity: "top", 

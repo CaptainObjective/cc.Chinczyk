@@ -1,21 +1,13 @@
 import rollADie from 'roll-a-die';
-let roll = 0;
 
-class Dice {
-  static throwDice() {
-    if (roll >= 1 && roll <= 6) return roll;
-    return Math.floor(Math.random() * 6 + 1);
-  }
-}
-
-
-function response(res) {
+const diceFormula = () => {
+  return Math.floor(Math.random() * 6 + 1);
 }
 
 export function rollValue() {
   const element = document.getElementById('dice-box');
   const numberOfDice = +1;
-  const throwDice = Dice.throwDice();
+  const throwDice = diceFormula();
   const delay = 20000;
   const options = {
     element, // element to display the animated dice in.
@@ -28,8 +20,17 @@ export function rollValue() {
   return throwDice;
 }
 
+function response() {
+}
+
+
+// Do testów
+
+// let roll = 0;
+// const diceFormula = () => {
+//   if (roll >= 1 && roll <= 6) return roll;
+//   return Math.floor(Math.random() * 6 + 1);
+// }
 // document.getElementById('test').addEventListener('change', e => (roll = Number(e.target.value)));
 
-// przy wartości Math.random wychodziły wartości = 7//
 
-export default Dice;

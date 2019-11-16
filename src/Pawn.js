@@ -1,6 +1,5 @@
 import Toastify from 'toastify-js'
 
-
 class Pawn {
   constructor(color, num) {
     this.position = null;
@@ -16,8 +15,6 @@ class Pawn {
   // dodanie statusów umożliwi identyfikację pionków w domu, na planszy i na finiszu//
 
   move(diceRoll, from, fields) {
-    if (this.position != null)
-    this.popUpPawn(this.popUpText = `Ruszyłeś się o  ${diceRoll} do przodu`);
     // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
@@ -29,7 +26,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      this.popUpPawn(this.popUpText = 'Wyrzuciłeś za dużo!');
+      this.popUpPawn('Wyrzuciłeś za dużo!');
     }
     
     // Próba wejścia na zajęte miejsce w bazie
@@ -41,7 +38,7 @@ class Pawn {
       this.position = this.position - diceRoll;
       this.diceRollSum = this.diceRollSum - diceRoll;
       from = this.position;
-      this.popUpPawn(this.popUpText = 'Miejsce w bazie jest zajęte');
+      this.popUpPawn('Miejsce w bazie jest zajęte');
     }
     // Warunek wejścia do bazy
     else if (
@@ -52,7 +49,7 @@ class Pawn {
       this.clearField(from);
       document.getElementById(`finish-${this.color}-${this.diceRollSum % 10}`).appendChild(this.render());
       this.status = 'finished';
-      this.popUp(this.popUpText = 'Pionek w bazie!');
+      this.popUp('Pionek w bazie!');
     } else {
       this.clearField(from);
       document.getElementById(this.position).appendChild(this.render());
@@ -67,7 +64,7 @@ class Pawn {
       //Jeżeli tam już coś jest to to zbij
       if (fields[this.position].pawn) fields[this.position].pawn.wasBeat();
       // Ustawiamy na nowe pole
-      fields[this.position].pawn = this;
+      fields[this.position].pawn = this
     }
   }
 
@@ -86,7 +83,7 @@ class Pawn {
   }
 
   wasBeat() {
-    this.popUpPawn(this.popUpText = 'Zbiłeś piona!')
+    this.popUpPawn('Zbiłeś piona!')
     console.log('Bicie');
     this.status = 'in_home';
     this.diceRollSum = 0;
@@ -157,14 +154,14 @@ class Pawn {
     pawn.style.boxShadow = 'none';
   }
 
-    // Pop-up
-    popUpPawn(popUpText) {
+    //Pop-up
+    popUpPawn(text) {
       Toastify({
-        text: popUpText,
+        text: text,
         duration: 2500,
         newWindow: true,
         gravity: "top", 
-        position: 'right',
+        position: 'center',
         backgroundColor: this.color,
         stopOnFocus: true,
       }).showToast();

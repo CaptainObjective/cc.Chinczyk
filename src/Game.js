@@ -28,7 +28,7 @@ class Game {
   //metoda do rzucania kostką
   makeThrow() {
     this.diceResult = rollValue();
-    this.popUpPlayer(this.popUpText = `Wyrzuciłeś ${this.diceResult}`)
+    this.popUpPlayer(`Wyrzuciłeś ${this.diceResult}`)
     console.log(`--> wynik rzutu kostką: ${this.diceResult}`);
     document.querySelector('#throwDice').disabled = true;
     document.querySelector('#pawnMove').disabled = false;
@@ -43,7 +43,7 @@ class Game {
 
     // gracz ma dodatkowy rzut, gdy wypadnie 6
     if (this.diceResult === 6) {
-      this.popUpPlayer(this.popUpText = `Brawo dodatkowy rzut kostką!`);
+      this.popUpPlayer(`Brawo dodatkowy rzut kostką!`, 'right');
       console.log('Brawo! Dodatkowy rzut kostką')
       document.querySelector('#throwDice').disabled = false;
       document.querySelector('#pawnMove').disabled = true;
@@ -53,7 +53,7 @@ class Game {
     // wszyscy pionki w domku, możliwość trzech rzutów
     if (this.players[this.currentPlayerIndex].isAllHome()) {
       if (this.counter > 0) {
-        this.popUpPlayer(this.popUpText = `Masz dodatkowy rzut, aby wyjść z domku`);
+        this.popUpPlayer(`Dodatkowy rzut!`, 'right');
         console.log(`Masz dodatkowy rzut, aby wyjść z domku`);
         this.counter--;
         document.querySelector('#throwDice').disabled = false;
@@ -72,6 +72,7 @@ class Game {
   switchToNextPlayer() {
     this.currentPlayerIndex++;
     if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
+    this.popUpPlayer(`Kolej gracza ${this.players[this.currentPlayerIndex].color}`, 'center');
     console.log(`----> kolej gracza: ${this.players[this.currentPlayerIndex].color}`)
     this.counter = 2;
   }
@@ -90,13 +91,13 @@ class Game {
     });
   }
 
-  popUpPlayer(popUpText) {
+  popUpPlayer(text, position) {
     Toastify({
-      text: popUpText,
-      duration: 2500,
+      text: text,
+      duration: 1250,
       newWindow: true,
-      gravity: "top", 
-      position: 'right',
+      gravity: 'center',
+      position: position,
       backgroundColor: this.players[this.currentPlayerIndex].color,
       stopOnFocus: true,
     }).showToast();
