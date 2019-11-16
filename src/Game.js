@@ -99,7 +99,7 @@ class Game {
   popUpPlayer(text, position) {
     Toastify({
       text: text,
-      duration: 1250,
+      duration: 2000,
       newWindow: true,
       gravity: 'center',
       position: position,

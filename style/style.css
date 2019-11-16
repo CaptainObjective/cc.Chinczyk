@@ -160,7 +160,8 @@ button {
 
 .toastify-center {
   text-align: center;
-  width: 14%;
+  word-wrap: none;
+  max-width: 15%;
   z-index: 2;
 }
 
