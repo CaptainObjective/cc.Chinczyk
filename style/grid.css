@@ -2,7 +2,8 @@
   display: grid;
   width: 600px;
   height: 600px;
-  background: #f7fdbb;
+  /* background: #f7fdbb; */
+  background-color: rgba(255, 255, 153, .7);
   grid-gap: 8px;
   grid-template-areas:
     '.. py py .. di dj aa .. pg pg ..'
@@ -19,7 +20,7 @@
   grid-template-columns: repeat(11, 1fr);
   grid-template-rows: repeat(11, 1fr);
   padding: 10px;
-  border: 3px #569ef1 solid;
+  /* border: 3px #569ef1 solid; */
   font-size: 12px;
 }
 

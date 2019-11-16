@@ -71,7 +71,7 @@ class Game {
   //restartuje counter do pierwotnej wartości
   switchToNextPlayer() {
     this.currentPlayerIndex++;
-    if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
+    if (this.currentPlayerIndex == this.numberOfPlayers) this.currentPlayerIndex = 0;
     console.log(`----> kolej gracza: ${this.players[this.currentPlayerIndex].color}`)
     this.counter = 2;
   }
