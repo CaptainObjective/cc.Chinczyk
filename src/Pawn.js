@@ -28,7 +28,6 @@ class Pawn {
       from = this.position;
       this.popUpPawn('Wyrzuciłeś za dużo!');
     }
-    
     // Próba wejścia na zajęte miejsce w bazie
     else if (
       this.diceRollSum > 39 &&

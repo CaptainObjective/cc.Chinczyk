@@ -8,10 +8,10 @@ export function rollValue() {
   const element = document.getElementById('dice-box');
   const numberOfDice = +1;
   const throwDice = diceFormula();
-  const delay = 20000;
+  const delay = 200000;
   const options = {
-    element, // element to display the animated dice in.
-    numberOfDice, // number of dice to use 
+    element,
+    numberOfDice,
     callback: response,
     values: [throwDice],
     delay: delay
@@ -20,6 +20,7 @@ export function rollValue() {
   return throwDice;
 }
 
+// Niepotrzebne ale musi być
 function response() {
 }
 

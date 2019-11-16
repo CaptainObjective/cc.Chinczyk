@@ -27,6 +27,8 @@ class Game {
 
   //metoda do rzucania kostką
   makeThrow() {
+    const asianWiggle1 = document.querySelector('#facebox');
+    asianWiggle1.style.transform = "scaleX(-1)";
     this.diceResult = rollValue();
     this.popUpPlayer(`Wyrzuciłeś ${this.diceResult}`)
     console.log(`--> wynik rzutu kostką: ${this.diceResult}`);
@@ -36,7 +38,9 @@ class Game {
 
   //metoda do ruszania pionka
   makeMove() {
-    //jeżeli gracz nie wskazał pionka to czekamy, aż wskarze pionka
+    const asianWiggle2 = document.querySelector('#facebox');
+    asianWiggle2.style.transform = "scaleX(1)";
+    //jeżeli gracz nie wskazał pionka to czekamy, aż wskaże pionka
     if (!this.players[this.currentPlayerIndex].move(this.diceResult, this.fields)) {
       return;
     }
@@ -60,6 +64,7 @@ class Game {
         document.querySelector('#pawnMove').disabled = true;
         return;
       }
+
     }
 
     //wszystko ok, zmieniamy gracza

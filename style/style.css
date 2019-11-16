@@ -3,12 +3,17 @@
   --red: red;
   --blue: blue;
   --yellow: yellow;
+  --black: black;
+  --border: 2px var(--black) solid;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
   font-family: sans-serif;
   background: #dd5e89;
   background: -webkit-linear-gradient(to right, #f7bb97, #dd5e89);
@@ -47,14 +52,14 @@ h1 {
 
 button {
   margin: 0.3rem;
-  padding: .5rem;
+  padding: 0.5rem;
   border: none;
   cursor: pointer;
 }
 
 .field {
   background: #ffffff;
-  border: 2px #000000 solid;
+  border: var(--border);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -94,7 +99,7 @@ button {
   align-items: center;
   justify-items: center;
   padding: 10px;
-  border: 2px #000000 solid;
+  border: var(--border);
   border-radius: 50%;
 }
 
@@ -117,7 +122,7 @@ button {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 2px #000000 solid;
+  border: var(--border);
 }
 
 .pawn-green {
@@ -138,23 +143,25 @@ button {
   position: absolute;
 }
 
-.facebox {
+#facebox {
   background-image: url('img/6l71.jpg');
   background-size: cover;
   background-position: center;
   border-radius: 50%;
-  border: 2px #000000 solid;
+  border: var(--border);
 }
 
+/* NPM PACKAGES STYLING */
+
 .toastify {
-  color: #000000;
+  color: var(--black);
   font-weight: bold;
 }
 
 .toastify-center {
   text-align: center;
-  width: 10%;
-  z-index: ;
+  width: 14%;
+  z-index: 2;
 }
 
 #dice-box {
@@ -166,6 +173,7 @@ button {
   background-image: url(/style/img/floor.jpg);
   background-size: cover;
   background-position: center;
-  border: 3px #000000 solid;
+  border: var(--border);
   border-radius: 10px;
+  padding: 10px 40px 0 0;
 }
