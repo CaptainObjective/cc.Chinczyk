@@ -49,6 +49,7 @@ form input {
   color: white;
   background-color:rgb(155, 45, 45);
   border: none;
+  padding: 5px;
   box-shadow: 5px 5px 5px gray;
 }
 
