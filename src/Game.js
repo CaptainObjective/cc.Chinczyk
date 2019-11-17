@@ -64,7 +64,6 @@ class Game {
         document.querySelector('#pawnMove').disabled = true;
         return;
       }
-
     }
 
     //wszystko ok, zmieniamy gracza
@@ -76,7 +75,7 @@ class Game {
   //restartuje counter do pierwotnej wartości
   switchToNextPlayer() {
     this.currentPlayerIndex++;
-    if (this.currentPlayerIndex === this.numberOfPlayers) this.currentPlayerIndex = 0;
+    if (this.currentPlayerIndex == this.numberOfPlayers) this.currentPlayerIndex = 0;
     this.popUpPlayer(`Kolej gracza ${this.players[this.currentPlayerIndex].color}`, 'center');
     console.log(`----> kolej gracza: ${this.players[this.currentPlayerIndex].color}`)
     this.counter = 2;

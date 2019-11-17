@@ -20,7 +20,58 @@ body {
   background: linear-gradient(to right, #f7bb97, #dd5e89);
 }
 
+.pop-up {
+  /* display: none; */
+  position: absolute;
+  z-index: 2;
+  background-image: url(img/background-img.jpg);
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pop-up > h1 {
+  margin: 5rem;
+  color: rgb(155, 45, 45);
+}
+
+form {
+ color: rgb(155, 45, 45);
+ background-color: rgba(255,255,255,.7);
+ padding: 1rem;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+form div {
+  margin: 1rem auto;
+}
+
+form label {
+  margin-right: 2rem;
+  text-shadow: 1px 1px black;
+}
+
+form input {
+  color: white;
+  background-color:rgb(155, 45, 45);
+  border: none;
+  padding: 5px;
+  box-shadow: 5px 5px 5px gray;
+}
+
+#startGame {
+  margin-top: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px black;
+}
+
 .game-box {
+  position: absolute;
+  background-image: url('img/background-img.jpg'); 
+  background-size: cover;	  
   display: flex;
   justify-content: space-evenly;
   width: 100%;
