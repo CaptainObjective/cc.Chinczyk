@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/grid.css" />
+    <title>Chinczyk</title>
+    <script src="index.js" defer></script>
+  </head>
 
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <link rel="stylesheet" href="style/style.css" />
-  <link rel="stylesheet" href="style/grid.css">
-  <title>Chinczyk</title>
-  <script src="index.js" defer></script>
-</head>
+  <body>
+    <div class="pop-up">
+      <h1>
+        Witamy w grze <br />
+        Chinczyk!
+      </h1>
+      <form>
+        <div>
+          <label for="number">Proszę wskazać liczbę graczy</label>
+          <input type="text" name="number" id="numbers" />
+        </div>
+        <div>
+          <label for="name">Imię pierwszego gracza</label>
+          <input type="text" name="name-1" id="name-1" />
+        </div>
+        <div>
+          <label for="name">Imię drugiego gracza</label>
+          <input type="text" name="name-2" id="name-2" />
+        </div>
+        <div>
+          <label for="name">Imię trzeciego gracza</label>
+          <input type="text" name="name-3" id="name-3" />
+        </div>
+        <div>
+          <label for="name">Imię czeartego gracza</label>
+          <input type="text" name="name-4" id="name-4" />
+        </div>
+        <input id="startGame" type="button" value="Start gry!" onclick="startGame()" />
+      </form>
+    </div>
 
-<body>
-
-   <div class='pop-up'>
-    <h1>Witamy w grze <br> Chinczyk!</h1>
-    <form>
-      <div>
-        <label for='number'>Proszę wskazać liczbę graczy</label>
-        <input type='text' name='number' id='numbers' />
-      </div>
-      <div>
-        <label for='name'>Imię pierwszego gracza</label>
-        <input type='text' name='name-1' id='name-1' />
-      </div>
-      <div>
-        <label for='name'>Imię drugiego gracza</label>
-        <input type='text' name='name-2' id='name-2' />
-      </div>
-      <div>
-        <label for='name'>Imię trzeciego gracza</label>
-        <input type='text' name='name-3' id='name-3' />
-      </div>
-      <div>
-        <label for='name'>Imię czeartego gracza</label>
-        <input type='text' name='name-4' id='name-4' />
-      </div>
-      <input id='startGame' type='button' value='Start gry!' onclick='startGame()'/>
-    </form>
-  </div>
-
-  <div class="game-box">
+    <div class="game-box">
       <div class="board">
         <h1>Chinczyk</h1>
         <div id="wrapper">

@@ -2,7 +2,7 @@ import rollADie from 'roll-a-die';
 
 const diceFormula = () => {
   return Math.floor(Math.random() * 6 + 1);
-}
+};
 
 export function rollValue() {
   const element = document.getElementById('dice-box');
@@ -14,16 +14,14 @@ export function rollValue() {
     numberOfDice,
     callback: response,
     values: [throwDice],
-    delay: delay
-  }
+    delay: delay,
+  };
   rollADie(options);
   return throwDice;
 }
 
 // Niepotrzebne ale musi być
-function response() {
-}
-
+function response() {}
 
 // Do testów
 
@@ -31,7 +29,5 @@ function response() {
 // const diceFormula = () => {
 //   if (roll >= 1 && roll <= 6) return roll;
 //   return Math.floor(Math.random() * 6 + 1);
-// }
+// };
 // document.getElementById('test').addEventListener('change', e => (roll = Number(e.target.value)));
-
-

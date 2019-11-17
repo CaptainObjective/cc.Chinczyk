@@ -1,4 +1,4 @@
-import Toastify from 'toastify-js'
+import Toastify from 'toastify-js';
 
 class Pawn {
   constructor(color, num) {
@@ -8,7 +8,7 @@ class Pawn {
     this.diceRollSum = 0;
     // przekazany do nadania id pionka
     this.num = num;
-    // wskazanie czy pionek został wybrany 
+    // wskazanie czy pionek został wybrany
     this.isSelected = false;
   }
 
@@ -18,7 +18,7 @@ class Pawn {
     // Pionki mogą "krążyć" wokół planszy
     if (this.position + diceRoll > 39 && this.color !== 'green') this.position = (this.position + diceRoll) % 10;
     else this.position = from + diceRoll;
-    
+
     // Sumowanie wyrzuconych oczek dla każdego pionka
     this.diceRollSum = this.diceRollSum + diceRoll;
     // Za duża liczba oczek wyrzucona przy próbie wejścia do bazy
@@ -58,18 +58,25 @@ class Pawn {
 
     //Cokolowiek by sie nie zadzialo to :
     // Czyscimy poprzednie pole
+    // console.clear();
     fields[from].pawn = null;
     if (this.position < 40) {
       //Jeżeli tam już coś jest to to zbij
       if (fields[this.position].pawn) fields[this.position].pawn.wasBeat();
       // Ustawiamy na nowe pole
-      fields[this.position].pawn = this
+      fields[this.position].pawn = this;
     }
   }
 
   clearField(from) {
     const oldField = document.getElementById(from);
-    if (oldField.children[0]) oldField.removeChild(oldField.children[0]);
+    //Tutaj mamy piekny przyklad jak nie pisac kodu
+    if (oldField.children[0]) {
+      oldField.removeChild(oldField.children[0]);
+      if (oldField.children[0]) {
+        oldField.removeChild(oldField.children[0]);
+      }
+    }
   }
 
   render() {
@@ -82,7 +89,7 @@ class Pawn {
   }
 
   wasBeat() {
-    this.popUpPawn('Zbiłeś piona!')
+    this.popUpPawn('Zbiłeś piona!');
     console.log('Bicie');
     this.status = 'in_home';
     this.diceRollSum = 0;
@@ -134,14 +141,14 @@ class Pawn {
     let _this = this;
 
     //ustawia, które pionki zostały wskazane
-    pawn.addEventListener('click', function () {
+    pawn.addEventListener('click', function() {
       if (!_this.isSelected) {
         pawn.style.boxShadow = 'inset 0 0 1em black';
       } else {
         pawn.style.boxShadow = 'none';
       }
       _this.isSelected = !_this.isSelected;
-      console.log(`zaznaczono pionek: ${pawnId}`)
+      console.log(`zaznaczono pionek: ${pawnId}`);
     });
   }
 
@@ -153,20 +160,18 @@ class Pawn {
     pawn.style.boxShadow = 'none';
   }
 
-    //Pop-up
-    popUpPawn(text) {
-      Toastify({
-        text: text,
-        duration: 2500,
-        newWindow: true,
-        gravity: "top", 
-        position: 'center',
-        backgroundColor: this.color,
-        stopOnFocus: true,
-      }).showToast();
-    }
-
+  //Pop-up
+  popUpPawn(text) {
+    Toastify({
+      text: text,
+      duration: 2500,
+      newWindow: true,
+      gravity: 'top',
+      position: 'center',
+      backgroundColor: this.color,
+      stopOnFocus: true,
+    }).showToast();
+  }
 }
-
 
 export default Pawn;
