@@ -1,20 +1,17 @@
 import Game from './Game';
 
-let num = 0;
+const numberOfPlayers = document.getElementById('numbers');
 
-const playersNumber = () => {
-  const numberOfPlayers = prompt(`Witamy w grze Chińczyk! Proszę wskazać liczbę graczy`, '');
-  if (numberOfPlayers){
-    num = numberOfPlayers;
+//ustawianie liczby graczy
+function startGame() {
+  let players = 0;
+  document.querySelector('.pop-up').style.display = 'none';
+  if(numberOfPlayers.value == 1 || numberOfPlayers.value == '') {
+    players = 2;
   } else {
-    num = 4;
+    players = numberOfPlayers.value
   }
-};
-// 
-window.addEventListener('load', () => playersNumber());
-
-const startGame = (numberOfPlayers = num) => {
-  new Game(numberOfPlayers);
+  new Game(players);
 };
 
-window.addEventListener('load', () => startGame());
+document.getElementById('startGame').onclick = startGame;

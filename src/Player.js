@@ -14,7 +14,20 @@ class Player {
     for (let i = 0; i < 4; i++) {
       this.pawns.push(new Pawn(color, i));
     }
+    this.playerNames();
     this.renderHome();
+  }
+
+  //dadawanie imion graczy
+  playerNames() {
+    
+    document.getElementById('player-green').innerText = document.getElementById('name-1').value;
+
+    document.getElementById('player-red').innerText = document.getElementById('name-2').value;
+
+    document.getElementById('player-blue').innerText = document.getElementById('name-3').value;
+
+    document.getElementById('player-yellow').innerText = document.getElementById('name-4').value;
   }
 
   renderHome() {
