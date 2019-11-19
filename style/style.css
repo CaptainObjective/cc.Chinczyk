@@ -24,7 +24,7 @@ body {
   /* display: none; */
   position: absolute;
   z-index: 2;
-  background-image: url(img/background-img.jpg);
+  background-image: url('img/background-img.jpg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -36,12 +36,12 @@ body {
 }
 
 form {
- color: rgb(155, 45, 45);
- background-color: rgba(255,255,255,.7);
- padding: 1rem;
- display: flex;
- flex-direction: column;
- align-items: center;
+  color: rgb(155, 45, 45);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 form div {
@@ -55,7 +55,7 @@ form label {
 
 form input {
   color: white;
-  background-color:rgb(155, 45, 45);
+  background-color: rgb(155, 45, 45);
   border: none;
   padding: 5px;
   box-shadow: 5px 5px 5px gray;
@@ -70,8 +70,8 @@ form input {
 
 .game-box {
   position: absolute;
-  background-image: url('img/background-img.jpg'); 
-  background-size: cover;	  
+  background-image: url('img/background-img.jpg');
+  background-size: cover;
   display: flex;
   justify-content: space-evenly;
   width: 100%;
@@ -222,7 +222,7 @@ button {
   display: flex;
   justify-content: center;
   align-content: center;
-  background-image: url(/style/img/floor.jpg);
+  background-image: url('img/floor.jpg');
   background-size: cover;
   background-position: center;
   border: var(--border);
